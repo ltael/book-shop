@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Shop — книжный магазин</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ШАПКА САЙТА -->
+  <header class="header">
+    <div class="header__inner container">
+      <a href="#" class="logo">
+        <span class="logo__title">BOOK SHOP</span>
+        <span class="logo__subtitle">Книжный магазин для программистов</span>
+      </a>
+
+      <nav class="nav" aria-label="Главное меню">
+        <a href="#catalog" class="nav__link">Каталог</a>
+        <a href="#cart" class="nav__link nav__link--cart">
+          <svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 9h18l-2 11H5L3 9zm5 0V7a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          Корзина
+          <span class="nav__count" id="cart-count">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
+  <main class="container">
+    <!-- Каталог книг -->
+    <section class="catalog" id="catalog">
+      <h1 class="section-title">Новинки</h1>
+      <div class="catalog__grid" id="catalog-grid">
+        <!-- Карточки книг добавляются сюда из script.js -->
+      </div>
+    </section>
+
+    <!-- Корзина -->
+    <section class="cart" id="cart">
+      <h2 class="section-title">Корзина</h2>
+      <p class="cart__empty" id="cart-empty">Корзина пуста. Добавьте книги из каталога.</p>
+      <ul class="cart__list" id="cart-list">
+        <!-- Товары корзины добавляются сюда из script.js -->
+      </ul>
+      <div class="cart__footer" id="cart-footer" hidden>
+        <p class="cart__total">Итого: <span id="cart-total">0</span> $</p>
+        <button class="btn btn--primary" id="checkout-btn" type="button">Оформить заказ</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ПОДВАЛ САЙТА -->
+  <footer class="footer">
+    <p class="container">© 2026 Book Shop. Лабораторная работа по веб-программированию</p>
+  </footer>
+
+  <!-- Модальное окно: подробнее о книге -->
+  <dialog class="modal" id="book-modal">
+    <div class="modal__body" id="book-modal-body"></div>
+    <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+  </dialog>
+
+  <!-- Модальное окно: форма заказа -->
+  <dialog class="modal" id="order-modal">
+    <form class="modal__body order-form" id="order-form">
+      <h2 class="order-form__title">Оформление заказа</h2>
+
+      <label class="order-form__field">
+        Имя
+        <input type="text" name="firstName" id="first-name" required minlength="2" placeholder="Анна">
+      </label>
+
+      <label class="order-form__field">
+        Фамилия
+        <input type="text" name="lastName" id="last-name" required minlength="2" placeholder="Иванова">
+      </label>
+
+      <label class="order-form__field order-form__field--wide">
+        Адрес доставки
+        <input type="text" name="address" id="address" required minlength="5" placeholder="ул. Пушкина, д. 10, кв. 5">
+      </label>
+
+      <label class="order-form__field order-form__field--wide">
+        Контактный номер телефона
+        <input type="tel" name="phone" id="phone" required
+               pattern="\+?[0-9\s\-\(\)]{7,20}" placeholder="+7 900 123-45-67"
+               title="Только цифры, пробелы, скобки, дефис и +, от 7 символов">
+      </label>
+
+      <p class="order-form__total">Сумма заказа: <b><span id="order-total">0</span> $</b></p>
+
+      <button class="btn btn--primary order-form__submit" type="submit">Создать заказ</button>
+    </form>
+    <button class="modal__close" type="button" aria-label="Закрыть" data-close>×</button>
+  </dialog>
+
+  <!-- Модальное окно: сообщение об успешном заказе -->
+  <dialog class="modal" id="success-modal">
+    <div class="modal__body success">
+      <p class="success__title">Заказ создан!</p>
+      <p class="success__text" id="success-text"></p>
+      <button class="btn btn--primary" type="button" data-close>Отлично</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
