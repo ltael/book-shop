@@ -223,3 +223,40 @@ cartList.addEventListener('click', (event) => {
 
 // Показываем корзину сразу при загрузке страницы
 renderCart();
+
+
+// ================================================
+// 4. ОФОРМЛЕНИЕ ЗАКАЗА
+// ================================================
+
+const checkoutBtn = document.getElementById('checkout-btn');
+const orderModal = document.getElementById('order-modal');
+const orderForm = document.getElementById('order-form');
+const orderTotal = document.getElementById('order-total');
+const successModal = document.getElementById('success-modal');
+const successText = document.getElementById('success-text');
+
+// Кнопка «Оформить заказ» открывает окно с формой
+checkoutBtn.addEventListener('click', () => {
+  orderTotal.textContent = getTotal();
+  orderModal.showModal();
+});
+
+// Кнопка «Создать заказ». Сюда попадаем, только если все поля
+// заполнены правильно (это проверяет сам браузер: атрибуты required, pattern)
+orderForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // не перезагружать страницу
+
+  const data = new FormData(orderForm);
+  successText.textContent =
+    `${data.get('firstName')} ${data.get('lastName')}, мы доставим заказ на сумму ` +
+    `${getTotal()} $ по адресу: ${data.get('address')}. Позвоним по номеру ${data.get('phone')}.`;
+
+  orderModal.close();
+  successModal.showModal(); // показываем «Заказ создан!»
+
+  // Очищаем форму и корзину
+  orderForm.reset();
+  cart = [];
+  updateCart();
+});
