@@ -107,3 +107,119 @@ document.querySelectorAll('.modal').forEach((modal) => {
     }
   });
 });
+
+
+// ================================================
+// 3. КОРЗИНА
+// ================================================
+
+const cartList = document.getElementById('cart-list');
+const cartEmpty = document.getElementById('cart-empty');
+const cartFooter = document.getElementById('cart-footer');
+const cartTotal = document.getElementById('cart-total');
+const cartCount = document.getElementById('cart-count');
+
+// Корзина — это массив вида [{ id: 1, qty: 2 }, { id: 5, qty: 1 }]
+// При загрузке страницы достаём её из localStorage (если там что-то есть)
+let cart = loadCart();
+
+function loadCart() {
+  try {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+// Сохраняем корзину в localStorage (там можно хранить только строки,
+// поэтому превращаем массив в строку через JSON.stringify)
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Добавить книгу в корзину
+function addToCart(id) {
+  const item = cart.find((item) => item.id === id);
+  if (item) {
+    item.qty += 1; // книга уже есть — увеличиваем количество
+  } else {
+    cart.push({ id: id, qty: 1 }); // книги нет — добавляем
+  }
+  updateCart();
+}
+
+// Изменить количество (+1 или -1). Меньше 1 не бывает.
+function changeQty(id, delta) {
+  const item = cart.find((item) => item.id === id);
+  item.qty = Math.max(1, item.qty + delta);
+  updateCart();
+}
+
+// Удалить книгу из корзины
+function removeFromCart(id) {
+  cart = cart.filter((item) => item.id !== id);
+  updateCart();
+}
+
+// Посчитать общую сумму
+function getTotal() {
+  return cart.reduce((sum, item) => sum + findBook(item.id).price * item.qty, 0);
+}
+
+// Сохранить корзину и заново нарисовать её на странице
+function updateCart() {
+  saveCart();
+  renderCart();
+}
+
+// Нарисовать корзину
+function renderCart() {
+  cartList.innerHTML = cart.map((item) => {
+    const book = findBook(item.id);
+    return `
+      <li class="cart-item">
+        ${createCover(book, 'cover--small')}
+        <div class="cart-item__info">
+          <p class="cart-item__title">${book.title}</p>
+          <p class="cart-item__author">${book.author} · ${book.price} $</p>
+        </div>
+        <div class="cart-item__qty">
+          <button class="btn qty-btn" type="button" data-action="minus" data-id="${book.id}" aria-label="Уменьшить">−</button>
+          <span class="cart-item__count">${item.qty}</span>
+          <button class="btn qty-btn" type="button" data-action="plus" data-id="${book.id}" aria-label="Увеличить">+</button>
+        </div>
+        <p class="cart-item__sum">${book.price * item.qty} $</p>
+        <button class="btn cart-item__remove" type="button" data-action="remove" data-id="${book.id}" aria-label="Удалить">×</button>
+      </li>`;
+  }).join('');
+
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCount.textContent = totalQty;       // число на иконке корзины
+  cartTotal.textContent = getTotal();     // итоговая сумма
+  cartEmpty.hidden = cart.length > 0;     // «Корзина пуста» — только если пусто
+  cartFooter.hidden = cart.length === 0;  // итог и кнопка — только если не пусто
+}
+
+// Клик по «Добавить в корзину» (в каталоге и в окне «Подробнее»)
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-action="add"]');
+  if (!button) return;
+  addToCart(Number(button.dataset.id));
+
+  // Небольшая подсказка на кнопке, что книга добавлена
+  button.textContent = 'Добавлено ✓';
+  setTimeout(() => { button.textContent = 'Добавить в корзину'; }, 1000);
+});
+
+// Клики по кнопкам внутри корзины: −, +, ×
+cartList.addEventListener('click', (event) => {
+  const button = event.target.closest('button');
+  if (!button) return;
+  const id = Number(button.dataset.id);
+  if (button.dataset.action === 'plus') changeQty(id, 1);
+  if (button.dataset.action === 'minus') changeQty(id, -1);
+  if (button.dataset.action === 'remove') removeFromCart(id);
+});
+
+// Показываем корзину сразу при загрузке страницы
+renderCart();
