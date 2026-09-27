@@ -486,3 +486,87 @@ input:focus-visible {
   margin: 0 0 12px;
   color: var(--color-muted);
 }
+
+
+/* ========== АДАПТИВНОСТЬ (медиазапросы) ========== */
+
+/* Ноутбуки и небольшие экраны: 3 книги в ряд */
+@media (max-width: 1024px) {
+  .catalog__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Планшеты: 2 книги в ряд */
+@media (max-width: 768px) {
+  .catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .cart-item {
+    flex-wrap: wrap;
+  }
+
+  .cart-item__info {
+    flex-basis: calc(100% - 72px);
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .logo__title {
+    font-size: 22px;
+  }
+
+  .catalog__grid {
+    gap: 12px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  .card__title {
+    font-size: 15px;
+  }
+
+  .cover__title {
+    font-size: 15px;
+  }
+
+  .cart {
+    padding: 4px 16px 16px;
+  }
+
+  .cart__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal__body {
+    padding: 24px 18px;
+  }
+
+  .details {
+    flex-direction: column;
+  }
+
+  .order-form {
+    grid-template-columns: 1fr; /* поля формы в один столбец */
+  }
+}
