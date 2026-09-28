@@ -204,43 +204,21 @@ input:focus-visible {
   flex: 1;
 }
 
-/* Обложка книги, нарисованная на CSS */
+/* Обложка книги (картинка) */
 .cover {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: block;
+  width: 100%;
   aspect-ratio: 2 / 3;
-  padding: 18px 14px;
-  border-radius: 4px 8px 8px 4px;
-  color: #fff;
-  box-shadow: inset 6px 0 0 rgba(0, 0, 0, 0.18); /* корешок книги */
-}
-
-.cover__title {
-  font-family: var(--font-title);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.cover__author {
-  font-size: 12px;
-  opacity: 0.85;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .cover--small {
   width: 90px;
   flex-shrink: 0;
-  padding: 10px 8px;
 }
 
-.cover--small .cover__title {
-  font-size: 11px;
-}
-
-.cover--small .cover__author {
-  display: none;
-}
 
 /* ========== КОРЗИНА ========== */
 .cart {
@@ -270,7 +248,6 @@ input:focus-visible {
 
 .cart-item .cover--small {
   width: 56px;
-  padding: 6px;
 }
 
 .cart-item .cover--small .cover__title {
