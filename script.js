@@ -5,30 +5,30 @@
 // Список книг. У каждой книги есть id, автор, название, цена,
 // цвет обложки и краткое описание.
 const books = [
-  { id: 1, author: 'Douglas Crockford', title: 'JavaScript: The Good Parts', price: 30, color: '#1f9e96',
-    description: 'Классическая книга о лучших и надёжных частях языка JavaScript.' },
-  { id: 2, author: 'David Herman', title: 'Effective JavaScript', price: 22, color: '#2b2b2b',
-    description: '68 конкретных советов, как писать на JavaScript понятно и без ошибок.' },
-  { id: 3, author: 'David Flanagan', title: 'JavaScript: The Definitive Guide', price: 40, color: '#127a74',
-    description: 'Большой справочник по языку: от основ до браузерных API.' },
-  { id: 4, author: 'Eric Elliott', title: 'Programming JavaScript Applications', price: 19, color: '#3d7f8c',
-    description: 'Как проектировать крупные и удобные в поддержке приложения на JavaScript.' },
-  { id: 5, author: 'Addy Osmani', title: 'Learning JavaScript Design Patterns', price: 32, color: '#5b6b3a',
-    description: 'Паттерны проектирования и как применять их в JavaScript.' },
-  { id: 6, author: 'Boris Cherny', title: 'Programming TypeScript', price: 28, color: '#2f5f9e',
-    description: 'Введение в TypeScript: типы, классы и настройка проекта.' },
-  { id: 7, author: 'Alex Banks, Eve Porcello', title: 'Learning React', price: 25, color: '#0f8c8c',
-    description: 'Современный React шаг за шагом: компоненты, хуки и состояние.' },
-  { id: 8, author: 'Mike Cantelon и др.', title: 'Node.js in Action', price: 38, color: '#3a3f4b',
-    description: 'Как писать серверные приложения на Node.js.' },
-  { id: 9, author: 'Kyle Simpson', title: "You Don't Know JS: Up & Going", price: 15, color: '#c9a227',
-    description: 'Первая книга серии о том, как на самом деле работает JavaScript.' },
-  { id: 10, author: 'John Resig, Bear Bibeault', title: 'Secrets of the JavaScript Ninja', price: 35, color: '#8a4b2a',
-    description: 'Продвинутые приёмы: функции, замыкания, прототипы и работа с DOM.' },
-  { id: 11, author: 'Marijn Haverbeke', title: 'Eloquent JavaScript', price: 27, color: '#a8452f',
-    description: 'Выразительный JavaScript: программирование с нуля на живых примерах.' },
-  { id: 12, author: 'Nicholas C. Zakas', title: 'Understanding ECMAScript 6', price: 24, color: '#4a3f7a',
-    description: 'Все новые возможности стандарта ES6 с понятными примерами.' },
+    { id: 1, author: 'Маркус Зусак', title: 'Книжный вор', price: 699, image: 'book-thief.jpg',
+    description: 'Германия, 1939 год. Девочка Лизель ворует книги, а историю её жизни рассказывает сама Смерть.' },
+  { id: 2, author: 'Джейн Остен', title: 'Гордость и предубеждение', price: 789, image: 'pride.jpg',
+    description: 'История Элизабет Беннет и гордого мистера Дарси, которым предстоит преодолеть собственные предубеждения.' },
+  { id: 3, author: 'Александр Дюма', title: 'Граф Монте-Кристо', price: 1600, image: 'monte-cristo.jpg',
+    description: 'Эдмона Дантеса несправедливо заточают в замок Иф. Спустя годы он бежит и возвращается, чтобы отомстить.' },
+  { id: 4, author: 'Александр Дюма', title: 'Три мушкетёра', price: 1000, image: 'musketeers.jpg',
+    description: 'Приключения юного д’Артаньяна и его друзей Атоса, Портоса и Арамиса.' },
+  { id: 5, author: 'Иэн Макьюэн', title: 'Искупление', price: 799, image: 'atonement.jpg',
+    description: 'Лето 1935 года. Ошибка тринадцатилетней Брайони навсегда меняет жизнь её сестры и её возлюбленного.' },
+  { id: 6, author: 'Эрих Мария Ремарк', title: 'Три товарища', price: 500, image: 'three-comrades.jpg',
+    description: 'Трое друзей в Германии после Первой мировой войны. Роман о дружбе и любви.' },
+  { id: 7, author: 'Эмили Бронте', title: 'Грозовой перевал', price: 650, image: 'wuthering-heights.jpg',
+    description: 'Страстная и мрачная история любви Хитклифа и Кэтрин на вересковых пустошах Англии.' },
+  { id: 8, author: 'Стивен Кинг', title: 'Кэрри', price: 399, image: 'carrie.jpg',
+    description: 'Застенчивая школьница Кэрри обнаруживает у себя способность к телекинезу.' },
+  { id: 9, author: 'Альбер Камю', title: "Посторонний", price: 500, image: 'stranger.jpg',
+    description: 'Мерсо равнодушен ко всему вокруг, пока одно событие не меняет его жизнь.' },
+  { id: 10, author: 'Агата Кристи', title: 'Убийство на поле для гольфа', price: 399, image: 'golf.jpg',
+    description: 'Эркюль Пуаро расследует загадочное убийство на юге Франции.' },
+  { id: 11, author: 'Маргарет Митчелл', title: 'Унесённые ветром', price: 1600, image: 'gone-with-wind.jpg',
+    description: 'Судьба своенравной Скарлетт на фоне Гражданской войны в США.' },
+  { id: 12, author: 'Дэниел Киз', title: 'Цветы для Элджернона', price: 460, image: 'algernon.jpga',
+    description: 'Чарли Гордон участвует в эксперименте по повышению интеллекта и ведёт дневник.' },
 ];
 
 // Находим на странице блок, куда будем выводить карточки
@@ -36,12 +36,9 @@ const catalogGrid = document.getElementById('catalog-grid');
 
 // Функция возвращает HTML-код обложки книги
 function createCover(book, extraClass = '') {
-  return `
-    <div class="cover ${extraClass}" style="background: ${book.color}">
-      <span class="cover__title">${book.title}</span>
-      <span class="cover__author">${book.author}</span>
-    </div>`;
+  return `<img class="cover ${extraClass}" src="images/${book.image}" alt="Обложка: ${book.title}">`;
 }
+
 
 // Выводим все книги в каталог
 function renderCatalog() {
@@ -50,7 +47,7 @@ function renderCatalog() {
       ${createCover(book)}
       <p class="card__author">${book.author}</p>
       <h3 class="card__title">${book.title}</h3>
-      <p class="card__price">${book.price} $</p>
+      <p class="card__price">${book.price} ₽</p>
       <div class="card__buttons">
         <button class="btn" type="button" data-action="details" data-id="${book.id}">Подробнее</button>
         <button class="btn btn--primary" type="button" data-action="add" data-id="${book.id}">Добавить в корзину</button>
@@ -83,7 +80,7 @@ function showDetails(id) {
         <h2 class="details__title">${book.title}</h2>
         <p class="details__author">${book.author}</p>
         <p class="details__text">${book.description}</p>
-        <p class="details__price">${book.price} $</p>
+        <p class="details__price">${book.price} ₽</p>
         <button class="btn btn--primary" type="button" data-action="add" data-id="${book.id}">Добавить в корзину</button>
       </div>
     </div>`;
@@ -181,14 +178,14 @@ function renderCart() {
         ${createCover(book, 'cover--small')}
         <div class="cart-item__info">
           <p class="cart-item__title">${book.title}</p>
-          <p class="cart-item__author">${book.author} · ${book.price} $</p>
+          <p class="cart-item__author">${book.author} · ${book.price} ₽</p>
         </div>
         <div class="cart-item__qty">
           <button class="btn qty-btn" type="button" data-action="minus" data-id="${book.id}" aria-label="Уменьшить">−</button>
           <span class="cart-item__count">${item.qty}</span>
           <button class="btn qty-btn" type="button" data-action="plus" data-id="${book.id}" aria-label="Увеличить">+</button>
         </div>
-        <p class="cart-item__sum">${book.price * item.qty} $</p>
+        <p class="cart-item__sum">${book.price * item.qty} ₽</p>
         <button class="btn cart-item__remove" type="button" data-action="remove" data-id="${book.id}" aria-label="Удалить">×</button>
       </li>`;
   }).join('');
@@ -250,7 +247,7 @@ orderForm.addEventListener('submit', (event) => {
   const data = new FormData(orderForm);
   successText.textContent =
     `${data.get('firstName')} ${data.get('lastName')}, мы доставим заказ на сумму ` +
-    `${getTotal()} $ по адресу: ${data.get('address')}. Позвоним по номеру ${data.get('phone')}.`;
+    `${getTotal()} ₽ по адресу: ${data.get('address')}. Позвоним по номеру ${data.get('phone')}.`;
 
   orderModal.close();
   successModal.showModal(); // показываем «Заказ создан!»
